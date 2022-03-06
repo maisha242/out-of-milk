@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            var stuffz = [];
+            async function findInventory() {
+                fetch('http://localhost:8080/kitchen/1')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("item1").innerHTML = "name: " + data[0].name + ", quantity: " + data[0].quantity;
+                    document.getElementById("item2").innerHTML = "name: " + data[1].name + ", quantity: " + data[1].quantity;
+                    document.getElementById("item3").innerHTML = "name: " + data[2].name + ", quantity: " + data[2].quantity;
+                });
+            }
+            findInventory();
+                
+            </script>
+        <p>inventory:
+        </p>
+        <p id="item1"></p>
+        <p id="item2"></p>
+        <p id="item3"></p>
+    </body>
+</html>
