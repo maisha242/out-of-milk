@@ -30,10 +30,10 @@ public class KitchenDAO {
         Kitchen k = new Kitchen();
         k.setId(rs.getInt("kitchenid"));
         List<Item> itemz = new ArrayList<Item>();
-        String sql1 = "SELECT * FROM items WHERE items.itemid = 1";
+        String sql1 = "SELECT * FROM items WHERE itemid IN (SELECT kitchen.itemone FROM kitchen);";
 
-        String sql2 = "SELECT * FROM items WHERE items.itemid = 2";
-        String sql3 = "SELECT * FROM items WHERE items.itemid = 3";
+        String sql2 = "SELECT * FROM items WHERE itemid IN (SELECT kitchen.itemtwo FROM kitchen);";
+        String sql3 = "SELECT * FROM items WHERE itemid IN (SELECT kitchen.itemthree FROM kitchen);";
         itemz.addAll(jdbcTemplate.query(sql1, itemrowMapper));
         itemz.addAll(jdbcTemplate.query(sql2, itemrowMapper));
         itemz.addAll(jdbcTemplate.query(sql3, itemrowMapper));
@@ -49,6 +49,8 @@ public class KitchenDAO {
             this.kitchens.put(i.getId(), i);
         }
     }
+
+
     public KitchenDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.kitchens = new HashMap<Integer, Kitchen>();
