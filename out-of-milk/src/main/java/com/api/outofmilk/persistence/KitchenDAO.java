@@ -6,16 +6,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
 public class KitchenDAO {
     private JdbcTemplate jdbcTemplate;
 
     private Map<Integer, Kitchen> kitchens;
-    private int nextId;
+    private int nextItemId;
 
     RowMapper<Item> itemrowMapper = (rs, rowNum) -> {
         Item i = new Item();
@@ -48,6 +50,13 @@ public class KitchenDAO {
         for (Kitchen i : k) {
             this.kitchens.put(i.getId(), i);
         }
+        List<Item> i = jdbcTemplate.query("SELECT * FROM items", itemrowMapper);
+        this.nextItemId = 0;
+        for (Item j : i) {
+            if (j.getId() > this.nextItemId) {
+                this.nextItemId = j.getId();
+            }
+        }
     }
 
 
@@ -67,6 +76,27 @@ public class KitchenDAO {
 
     public List<Item> getItems(int kid) {
         return this.kitchens.get(kid).getItems();
+    }
+
+
+    public Item createItem(int kid, Item item) {
+        synchronized(kitchens) {
+            LocalDateTime current = LocalDateTime.now();
+            Item newItem = new Item(++nextItemId, item.getName(), item.getQuantity());
+            java.sql.Date newDate = new java.sql.Date(current.toInstant(ZoneOffset.UTC).toEpochMilli());
+            newItem.setDate(newDate);
+            Item oldItem = kitchens.get(kid).getItems().remove(2);
+            kitchens.get(kid).getItems().add(newItem);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+
+                //Date java_date = sdf.parse(newItem.getDate());
+                //java.sql.Date sql_date = new java.sql.Date(());
+                jdbcTemplate.execute("INSERT INTO items VALUES (" + newItem.getId() + ", " + "'" + newItem.getName() + "'" + ", " + newItem.getQuantity() + ", " + "'" + sdf.format(newDate) + "'" + ");");
+                jdbcTemplate.execute("UPDATE kitchen SET itemthree = " + newItem.getId() + " WHERE kitchenid = " + kid + ";");
+
+            return newItem;
+        }
     }
 
 

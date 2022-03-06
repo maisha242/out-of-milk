@@ -10,6 +10,14 @@ public class Item {
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
     @JsonProperty("date") private String date;
+
+
+    public Item(int id, String name, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+    }
+
     public Item() {
 
     }
@@ -43,7 +51,7 @@ public class Item {
     }
 
     public void setDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         this.date = sdf.format(date);
     }
