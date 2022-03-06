@@ -4,11 +4,13 @@ import com.api.outofmilk.model.Item;
 import com.api.outofmilk.model.Kitchen;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class KitchenDAO {
     private JdbcTemplate jdbcTemplate;
 
@@ -40,9 +42,16 @@ public class KitchenDAO {
         return k;
     };
 
+    private void load() {
+        List<Kitchen> k = jdbcTemplate.query("SELECT * FROM kitchen", rowMapper);
+        for (Kitchen i : k) {
+            this.kitchens.put(i.getId(), i);
+        }
+    }
     public KitchenDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.kitchens = new HashMap<Integer, Kitchen>();
+        load();
     }
 
     public Kitchen createKitchen(int kid, int i1, int i2, int i3) {
@@ -51,6 +60,10 @@ public class KitchenDAO {
         String sql1 = "SELECT id FROM kitchen WHERE id = " + kid;
         List<Kitchen> i = jdbcTemplate.query(sql1, rowMapper);
         return i.get(0);
+    }
+
+    public List<Item> getItems(int kid) {
+        return this.kitchens.get(kid).getItems();
     }
 
 
