@@ -7,6 +7,10 @@
 // Scripts
 // 
 
+window.onload = function () {
+    document.querySelector("#confirm").onclick = ConfirmButtonClicked;
+}
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -53,7 +57,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Activate SimpleLightbox plugin for portfolio items
     new SimpleLightbox({
-        elements: '#portfolio a.portfolio-box'
+        elements: '#item a.portfolio-box'
     });
 
 });
