@@ -1,6 +1,7 @@
 # <img src="https://github.com/maisha242/out-of-milk/blob/main/out_of_milk_logo.png" alt="drawing" width="200"/> out-of-milk 
 
-[Link to video](https://vimeo.com/685160334)
+- [Link to video](https://vimeo.com/685160334)
+- GitHub Pages: https://maisha242.github.io/out-of-milk/outofmilk.html
 
 
 
