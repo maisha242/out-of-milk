@@ -97,7 +97,11 @@ public class KitchenDAO {
 
     public Item updateItem(int kid, Item i) {
         synchronized(kitchens) {
-            jdbcTemplate.update("UPDATE items SET quantity = ? WHERE itemid = ?;", i.getQuantity(), i.getId());
+            Optional<Item> existing = kitchens.get(kid).getItems().stream().
+                    filter(p -> p.getName().equals(i.getName())).
+                    findFirst();
+            i.setId(existing.get().getId());
+            jdbcTemplate.update("UPDATE items SET quantity = ? WHERE itemid = ?;", i.getQuantity(), existing.get().getId());
             load();
             return i;
         }
