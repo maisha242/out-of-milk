@@ -2,13 +2,14 @@ package com.api.outofmilk.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Item {
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
-    @JsonProperty("date") private Date date;
+    @JsonProperty("date") private String date;
     public Item() {
 
     }
@@ -37,11 +38,13 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+
+        this.date = sdf.format(date);
     }
 }
