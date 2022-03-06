@@ -18,7 +18,9 @@ CREATE TABLE roomies
 
 CREATE TABLE kitchen(
     id SERIAL PRIMARY KEY,
-    items int REFERENCES items(id)
+    itemone int REFERENCES items(id),
+    itemtwo int REFERENCES items(id),
+    itemthree int REFERENCES items(id)
 );
 
 CREATE TABLE items(
