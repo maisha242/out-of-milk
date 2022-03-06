@@ -19,8 +19,8 @@ public class KitchenDAO {
 
     RowMapper<Item> itemrowMapper = (rs, rowNum) -> {
         Item i = new Item();
-        i.setId(rs.getInt("id"));
-        i.setName(rs.getString("id"));
+        i.setId(rs.getInt("itemid"));
+        i.setName(rs.getString("name"));
         i.setDate(rs.getDate("buydate"));
         i.setQuantity(rs.getInt("quantity"));
         return i;
@@ -28,11 +28,12 @@ public class KitchenDAO {
 
     RowMapper<Kitchen> rowMapper = (rs, rowNum) -> {
         Kitchen k = new Kitchen();
-        k.setId(rs.getInt("id"));
+        k.setId(rs.getInt("kitchenid"));
         List<Item> itemz = new ArrayList<Item>();
-        String sql1 = "SELECT itemone FROM kitchen INNER JOIN items ON kitchen.itemone = items.id";
-        String sql2 = "SELECT itemtwo FROM kitchen INNER JOIN items ON kitchen.itemtwo = items.id";
-        String sql3 = "SELECT itemthree FROM kitchen INNER JOIN items ON kitchen.itemthree = items.id";
+        String sql1 = "SELECT * FROM items WHERE items.itemid = 1";
+
+        String sql2 = "SELECT * FROM items WHERE items.itemid = 2";
+        String sql3 = "SELECT * FROM items WHERE items.itemid = 3";
         itemz.addAll(jdbcTemplate.query(sql1, itemrowMapper));
         itemz.addAll(jdbcTemplate.query(sql2, itemrowMapper));
         itemz.addAll(jdbcTemplate.query(sql3, itemrowMapper));
@@ -57,7 +58,7 @@ public class KitchenDAO {
     public Kitchen createKitchen(int kid, int i1, int i2, int i3) {
         String sql = "INSERT INTO kitchen VALUES (" + Integer.toString(kid) + ", " + i1 + ", " + i2 + ", " + i3 + ");";
         jdbcTemplate.execute(sql);
-        String sql1 = "SELECT id FROM kitchen WHERE id = " + kid;
+        String sql1 = "SELECT kitchenid FROM kitchen WHERE kitchenid = " + kid;
         List<Kitchen> i = jdbcTemplate.query(sql1, rowMapper);
         return i.get(0);
     }
