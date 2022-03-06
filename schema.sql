@@ -13,18 +13,21 @@ CREATE TABLE users(
 CREATE TABLE roomies
 (
     roomID SERIAL PRIMARY KEY,
-    roommates int REFERENCES users(id)
+    roommateog int REFERENCES users(id),
+    roommateone int REFERENCES users(id),
+    roommatetwo int REFERENCES users(id),
+    roommatethree int REFERENCES users(id)
 );
 
 CREATE TABLE kitchen(
-    id SERIAL PRIMARY KEY,
-    itemone int REFERENCES items(id),
-    itemtwo int REFERENCES items(id),
-    itemthree int REFERENCES items(id)
+    kitchenid SERIAL PRIMARY KEY,
+    itemone int REFERENCES items(itemid),
+    itemtwo int REFERENCES items(itemid),
+    itemthree int REFERENCES items(itemid)
 );
 
 CREATE TABLE items(
-    id SERIAL PRIMARY KEY,
+    itemid SERIAL PRIMARY KEY,
     name VARCHAR(255),
     quantity int NOT NULL,
     buydate date
