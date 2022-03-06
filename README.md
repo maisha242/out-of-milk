@@ -5,14 +5,13 @@
 - GitHub Pages: https://maisha242.github.io/out-of-milk/outofmilk.html
 
 
-
 ## Inspiration
 Being a group of 4 college students, we've all experienced the disappointment you feel when you go to grab ice cream from the freezer but someone else finished it. Living with roommates can be cost-effective, socially advantageous, and just cool in general. But, it can definitely suck especially when looking at groceries. 
-Sometimes, you look in the fridge and realize the milk you thought you got last week was actually two months ago. Or you thought you had brownie mix but turns out you don't and now you don't get to have brownies :( . 
-That's why we made out of milk ! It's a way to sync grocery lists between household members, keep an inventory of items, and tell you when you're running out! 
+Other days, you look in the fridge and realize the milk you thought you got last week was actually two months ago. The cauliflower you bought to try out a new recipe already started rotting. Or you thought you had brownie mix but turns out you don't and now you don't get to have brownies :( . 
+That's why we made it out of milk! It's a way to sync grocery lists between household members, keep an inventory of items, and tell you when you're running out! 
 
 ## What it does
-By logging in and creating a roommate group with your other household members, you can add shared items you usually buy, how much you buy of them, and when you buy them. Then, as everyone uses them, they can update the group shopping list when it starts getting low. Roommates will then get an SMS notification saying that they are about to run out. The same thing will happen if it's been a while since you've bought something and no one has posted any updates about it!
+By logging in and creating a roommate group with your other household members, you can add shared items you usually buy, how much you buy of them, and when you buy them. Then, as everyone uses them, they can update the group shopping list when it starts getting low by entering the quantity left. Roommates will then get an SMS notification saying that they are about to run out if they are getting close to 0. The same thing will happen if it's been a while since you've bought something and no one has posted any updates about it! That way either you get a reminder of something you have and forgot about or something that you should buy!
 
 ## How we built it
 - ♡ Databases using SQL and CockroachDB.
