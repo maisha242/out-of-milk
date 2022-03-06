@@ -78,6 +78,7 @@ function ConfirmButtonClicked() {
     bigString += "<div class='item-box-caption'>";
     bigString += `<div class='item-info'>Item:&nbsp;${item}&nbsp;&nbsp;&nbsp;&nbsp;Amount Left:&nbsp;${amount}&nbsp;&nbsp;&nbsp;&nbsp;Date Purchased:&nbsp;${date}</div>`;
     bigString += '</div>';
+    bigString += "<br>";
 
     document.querySelector("#container").innerHTML = bigString;
 
