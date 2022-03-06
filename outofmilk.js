@@ -57,3 +57,22 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+
+function ConfirmButtonClicked() {
+    // The item to be added
+    let item = document.querySelector("#item");
+    // The amount of the item
+    let amount = document.querySelector("#starting-number");
+    // The date the item was purchased
+    let date = document.querySelector("#date");
+
+    let bigString = "<div class='item-box-caption'>";
+    bigString += `<div class='item-name'>${item}</div>`;
+    bigString += `<div class='item-amount'>${amount}</div>`;
+    bigString += `<div class='item-date'>${date}</div>`;
+    bigString += '</div>';
+
+    document.querySelector("#container").innerHTML = bigString;
+
+}
