@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            var stuffz = [];
+            async function findInventory() {
+                fetch('http://localhost:8080/kitchen/1')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("item1").value = data[0].quantity;
+                    var val = document.getElementById("item1").value;
+                    document.getElementById("item1").innerHTML = "name: " + data[0].name + ", quantity: " + val;
+                    document.getElementById("item2").innerHTML = "name: " + data[1].name + ", quantity: " + data[1].quantity;
+                    document.getElementById("item3").innerHTML = "name: " + data[2].name + ", quantity: " + data[2].quantity;
+                });
+            }
+            async function increaseQuantity(item) {
+                fetch('http://localhost:8080/kitchen/1')
+                .then(response => response.json())
+                .then(data => {
+                    fetch('http://localhost:8080/kitchen/1/item/update', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({"id":1, "name":data[item].name, "quantity": data[item].quantity + 1, "date":"05-05-2022"})
+                    }).then(response =>response.json())
+                    .then(data => {
+                        findInventory();
+                    })
+                });
+                
+            }
+            function increaseValue() {
+  var value = parseInt(document.getElementById('item1').value, 10);
+  console.log(value);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('item1').value = value;
+  document.getElementById("item1").innerHTML = "name: milk" + ", quantity: " + value;
+  console.log(value);
+}
+
+function decreaseValue() {
+  var value = parseInt(document.getElementById('item1').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value < 1 ? value = 1 : '';
+  value--;
+  document.getElementById('item1').value = value;
+  document.getElementById("item1").innerHTML = "name: milk" + ", quantity: " + value;
+}
+            findInventory();
+                
+            </script>
+        <p>inventory:
+        </p>
+        <p id="item1"></p>
+        <input type = "button" value = "Increase Quantity" onClick = "increaseValue();"></input> <input type = "button" value = "Decrease Quantity" onClick = "decreaseValue();"></input>
+        <p id="item2"></p>
+        <input type = "button" value = "Increase Quantity"></input> <input type = "button" value = "Decrease Quantity"></input>
+        <p id="item3"></p>
+        <input type = "button" value = "Increase Quantity"></input> <input type = "button" value = "Decrease Quantity"></input>
+    </body>
+</html>
