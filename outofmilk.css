@@ -11450,6 +11450,13 @@ header.masthead h1, header.masthead .h1 {
   transition: opacity 0.25s ease;
   text-align: center;
 }
+.item-info{
+  text-align: center;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 #list .container-fluid .portfolio-box .item-box-caption .project-category, #list .container-sm .portfolio-box .item-box-caption .project-category, #list .container-md .portfolio-box .item-box-caption .project-category, #list .container-lg .portfolio-box .item-box-caption .project-category, #list .container-xl .portfolio-box .item-box-caption .project-category, #list .container-xxl .portfolio-box .item-box-caption .project-category {
   font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.85rem;
