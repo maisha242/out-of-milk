@@ -7,7 +7,7 @@ import java.util.List;
 public class Kitchen {
 
     @JsonProperty("id") private int id;
-    @JsonProperty("items") private List<Item> items;
+    private List<Item> items;
 
     public Kitchen(int id, List<Item> items) {
         this.id = id;
