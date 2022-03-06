@@ -9,5 +9,28 @@ public class Kitchen {
     @JsonProperty("id") private int id;
     @JsonProperty("items") private List<Item> items;
 
-    
+    public Kitchen(int id, List<Item> items) {
+        this.id = id;
+        this.items = items;
+    }
+
+    public Kitchen() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 }
