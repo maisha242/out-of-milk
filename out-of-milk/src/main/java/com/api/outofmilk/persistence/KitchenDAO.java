@@ -88,14 +88,18 @@ public class KitchenDAO {
             Item oldItem = kitchens.get(kid).getItems().remove(2);
             kitchens.get(kid).getItems().add(newItem);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-
-                //Date java_date = sdf.parse(newItem.getDate());
-                //java.sql.Date sql_date = new java.sql.Date(());
-                jdbcTemplate.execute("INSERT INTO items VALUES (" + newItem.getId() + ", " + "'" + newItem.getName() + "'" + ", " + newItem.getQuantity() + ", " + "'" + sdf.format(newDate) + "'" + ");");
-                jdbcTemplate.execute("UPDATE kitchen SET itemthree = " + newItem.getId() + " WHERE kitchenid = " + kid + ";");
+            jdbcTemplate.update("insert into items values (?, ?, ?, ?)", newItem.getId(), newItem.getName(), newItem.getQuantity(), sdf.format(newDate));
+            jdbcTemplate.execute("UPDATE kitchen SET itemthree = " + newItem.getId() + " WHERE kitchenid = " + kid + ";");
 
             return newItem;
+        }
+    }
+
+    public Item updateItem(int kid, Item i) {
+        synchronized(kitchens) {
+            jdbcTemplate.update("UPDATE items SET quantity = ? WHERE itemid = ?;", i.getQuantity(), i.getId());
+            load();
+            return i;
         }
     }
 

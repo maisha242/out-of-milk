@@ -36,5 +36,11 @@ public class KitchenController {
 
     }
 
+    @PostMapping("/{kid}/item/update")
+    public ResponseEntity<Item> updateItem(@PathVariable int kid, @RequestBody Item item) {
+        Item i = kitchenDao.updateItem(kid, item);
+        return new ResponseEntity<>(i, HttpStatus.OK);
+    }
+
 
 }

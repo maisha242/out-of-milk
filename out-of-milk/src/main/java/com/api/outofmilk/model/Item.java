@@ -51,7 +51,7 @@ public class Item {
     }
 
     public void setDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 
         this.date = sdf.format(date);
     }
