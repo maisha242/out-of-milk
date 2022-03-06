@@ -1,7 +1,7 @@
-import React from "react";
 import '../index.css';
+import React from "react";
 
-class Masthead extends React.Component{
+export class Masthead extends React.Component{
 
 
     render() {

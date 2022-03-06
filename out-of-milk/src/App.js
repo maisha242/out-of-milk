@@ -12,8 +12,7 @@ class App extends React.Component {
         <body>
           <Navbarbrand></Navbarbrand>
           <Masthead></Masthead>
-          <About></About>
-
+          
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">2022, BrickHack 8 - Maisha Iqbal, Jabrecia Washington, Roshan Nunna, Tyler Garcia</div></div>
         </footer>
