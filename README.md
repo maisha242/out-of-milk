@@ -20,6 +20,7 @@ By logging in and creating a roommate group with your other household members, y
 - ♡ BootStrap template (HTML/CSS/JS) for the front-end and changed it up.
 - ♡ Twilio for the SMS messaging for notifications
 - ♡ GitHub for Version Control, Pull requests, Merges, Releases, and Pages
+- ♡ Domain.com domain: outofmilk.tech
 - ♡ Figma for prototyping (https://www.figma.com/file/cMgu9aGb6PXBL6cqrij1nn/Out-of-Milk---Prototype?node-id=0%3A1)
 
 ## Challenges we ran into
