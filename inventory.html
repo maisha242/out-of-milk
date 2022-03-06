@@ -18,51 +18,44 @@
                     document.getElementById("item3").innerHTML = "name: " + data[2].name + ", quantity: " + data[2].quantity;
                 });
             }
-            async function increaseQuantity(item) {
+            async function increaseQuantity(item, isIncreasing) {
                 fetch('http://localhost:8080/kitchen/1')
                 .then(response => response.json())
                 .then(data => {
+                    if (isIncreasing) {
+                        var newquantity = data[item].quantity + 1;
+                    }
+                    else {
+                        var newquantity = data[item].quantity - 1;
+                        if (newquantity < 0) {
+                            newquantity = 0;
+                        }
+                    }
                     fetch('http://localhost:8080/kitchen/1/item/update', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({"id":1, "name":data[item].name, "quantity": data[item].quantity + 1, "date":"05-05-2022"})
+                        body: JSON.stringify({"id": item,"name": data[item].name,"quantity": newquantity, "date": "2022-05-06"})
                     }).then(response =>response.json())
                     .then(data => {
+                        console.log(data);
                         findInventory();
                     })
                 });
                 
             }
-            function increaseValue() {
-  var value = parseInt(document.getElementById('item1').value, 10);
-  console.log(value);
-  value = isNaN(value) ? 0 : value;
-  value++;
-  document.getElementById('item1').value = value;
-  document.getElementById("item1").innerHTML = "name: milk" + ", quantity: " + value;
-  console.log(value);
-}
 
-function decreaseValue() {
-  var value = parseInt(document.getElementById('item1').value, 10);
-  value = isNaN(value) ? 0 : value;
-  value < 1 ? value = 1 : '';
-  value--;
-  document.getElementById('item1').value = value;
-  document.getElementById("item1").innerHTML = "name: milk" + ", quantity: " + value;
-}
+            //initializing inventory at the start
             findInventory();
-                
-            </script>
+ </script>
         <p>inventory:
         </p>
         <p id="item1"></p>
-        <input type = "button" value = "Increase Quantity" onClick = "increaseValue();"></input> <input type = "button" value = "Decrease Quantity" onClick = "decreaseValue();"></input>
+        <input type = "button" value = "Increase Quantity" onClick = "increaseQuantity(0, true);"></input> <input type = "button" value = "Decrease Quantity" onClick = "increaseQuantity(0, false);"></input>
         <p id="item2"></p>
-        <input type = "button" value = "Increase Quantity"></input> <input type = "button" value = "Decrease Quantity"></input>
+        <input type = "button" value = "Increase Quantity" onClick = "increaseQuantity(1, true);"></input> <input type = "button" value = "Decrease Quantity" onClick = "increaseQuantity(1, false);"></input>
         <p id="item3"></p>
-        <input type = "button" value = "Increase Quantity"></input> <input type = "button" value = "Decrease Quantity"></input>
+        <input type = "button" value = "Increase Quantity" onClick = "increaseQuantity(2, true);"></input> <input type = "button" value = "Decrease Quantity" onClick = "increaseQuantity(2, false);"></input>
     </body>
 </html>
